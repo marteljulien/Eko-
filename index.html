@@ -1,0 +1,1454 @@
+<!DOCTYPE HTML>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Ekoï</title>
+
+
+<script src="jqtouch/jquery.1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="jqtouch/jqtouch.min.js" type="text/javascript" charset="utf-8"></script>
+<link href="jqtouch/jqtouch.min.css" rel="stylesheet" type="text/css">
+<link href="themes/apple/theme.min.css" rel="stylesheet" type="text/css">
+<!-- iOS 3+: dimensions 320x460 -->
+<link rel="apple-touch-startup-image" href="Default.png">
+<script type="text/javascript" charset="utf-8">
+            var jQT = new $.jQTouch({
+                icon: 'icon.png',
+                addGlossToIcon: true,
+                startupScreen: 'Default.png',
+                statusBar: 'black',
+            });
+			
+			    $(document).ready(function() { 
+    $.ajax({ 
+                type: "GET", 
+                url: "http://www.webspaceinvader.com/rsslib/rss.xml", 
+                dataType: "xml", 
+                success: parseXml, 
+                error: errorMsg 
+        }); 
+        function parseXml(xml) 
+        { 
+                $('#output').empty(); 
+                $(xml).find("item").each(function() 
+                { 
+                        var title = $(this).find('title').text();
+                        var pubDate = $(this).find('pubDate').text();
+                        var desc = $(this).find('description').text(); 
+                        var listItem = $('<li class="myrss">' + title + '<br/>' +
+pubDate + '<br/>' + desc + '</li>');
+                        $("#output").append(listItem);
+                });
+        }
+        function errorMsg() { 
+                $("#output").append("error getting xml feed"); 
+        } 
+  });
+
+</script>
+<style type="text/css">
+.center {
+	display: block;
+	margin-left: auto;
+    margin-right: auto;
+	margin-top: 10px;
+	text-align: center;
+}
+.light {
+	color: #FFF;
+}
+.myrss {
+	color: #FFF;
+}
+</style>
+</head>
+
+<body>
+	<div id="home" class="current">
+        <img src="images/logo.png" alt="Cycliste azur&eacute;en" width="220" height="107" class="center">
+        <ul class="rounded">
+    			<li class="arrow"><a class="cube" href="#textile">Textile</a> </li>
+                <li class="arrow"><a class="cube" href="#lunettes">Lunettes</a> </li>
+   				<li class="arrow"><a class="cube" href="#casques">Casques</a></li>
+                <li class="arrow"><a class="cube" href="#chaussures">Chaussures</a></li>
+				<li class="arrow"><a class="cube" href="#compression">Compression</a></li>
+				<li class="arrow"><a class="cube" href="#accessoires">Accessoires</a></li>
+   	  </ul><br><br>
+        <div class="info">
+                <p>&copy; Copyright 2008-2014 - EKOI - Tous droits r&eacute;serv&eacute;s</p>
+        </div>
+    </div>
+	
+	
+<div id="contact">
+    <div class="toolbar">
+                <h1>Nous contacter</h1>
+                <a href="#" class="back">Retour</a>
+            </div>
+				
+        <ul class="rounded">
+<form action="contact.php" method="post" id="form" data-transition="flow" data-rel="dialog">
+   <h4>Vous d&eacute;sirez nous contacter? Rien de plus simple, il vous suffit de nous envoyer le formulaire ci dessous.</h4><br>
+   <div data-role="fieldcontain">
+      <label for="id_name">Votre nom&nbsp;:</label>
+      <input type="text" name="name" id="id_name" value="" required data-mini="true" />
+   </div><br>
+    <div data-role="fieldcontain">
+	<label for="id_email">Votre e-mail&nbsp;:</label>
+      <input type="text" name="email" id="id_email" value="" required data-mini="true" />
+	</div>
+    <br>
+   <div data-role="fieldcontain">
+      <label for="id_deja_viendu">Vous pratiquez?</label>
+      <select name="deja_viendu" id="id_deja_viendu" data-role="slider" data-mini="true">
+      <option value="Non">Cyclo-cross</option>
+      <option value="Non">Piste</option>
+      <option value="Non">Route</option>
+      <option value="Oui">VTT</option>
+      <option value="Non">Autres</option>
+      </select>
+   </div>
+<br>
+   <div data-role="fieldcontain">
+      <label for="id_commentaire_orga">Votre message</label><br>
+      <textarea name="commentaire_orga" cols="40" rows="6" id="id_commentaire_orga" required data-mini="true"></textarea>
+   </div>
+    <br>
+   <div data-role="fieldcontain">
+      <label for="id_note_nico" class="select">Vous trouvez cette application:</label>
+      <select name="note_nico" id="id_note_nico" required data-native-menu="false" data-mini="true">
+      <option value="">Choisissez une option</option>
+      <option value="Nul">Nul</option>
+      <option value="Moyen">Moyen</option>
+      <option value="Bien">Bien</option>
+      <option value="Très bien">Très bien</option>
+      <option value="Formidable">Formidable</option>
+      </select>
+   </div>
+   <div class="ui-grid-a" id="nogrid_border">
+      <div class="ui-block-a">&nbsp;</div>
+      <div class="ui-block-b"><button type="submit" data-mini="true" data-inline="true" data-theme="d">Envoyer</button></div>
+   </div>
+</form>
+   	  </ul>
+    </div>	
+	
+	
+	
+	
+<div id="calendrier-route">
+    <div class="toolbar">
+                <h1>Route</h1>
+                <a href="#" class="back">Retour</a>
+            </div>
+				
+        <ul class="rounded">
+    			<li class="arrow"><a class="cube" href="#ffc-route">Calendrier route FFC 2014</a> </li>
+                <li class="arrow"><a class="cube" href="#fsgt-route">Calendrier route FSGT 2014</a> </li>
+   				<li class="arrow"><a class="cube" href="#ufolep-route">Calendrier route UFOLEP 2014</a></li>
+   	  </ul>
+    </div>
+        <div id="calendrier-VTT">
+    <div class="toolbar">
+                <h1>VTT</h1>
+                <a href="#" class="back">Retour</a>
+            </div>
+            <ul class="rounded">
+     			<li class="arrow"><a class="cube" href="#ffc-vtt">Calendrier VTT FFC 2014</a> </li>
+                <li class="arrow"><a class="cube" href="#fsgt-vtt">Calendrier VTT FSGT 2014</a> </li>
+   				<li class="arrow"><a class="cube" href="#ufolep-vtt">Calendrier VTT UFOLEP 2014</a></li>   			
+      </ul>
+    </div>
+
+    <div id="ffc-route">
+    <div class="toolbar">
+                <h1>FFC Route</h1>
+                <a href="#" class="back">Retour</a>
+            </div>
+            <ul class="rounded">
+    			<li class="light">
+				<center>
+				<h1>Janvier</h1>
+				<h6><table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFCC"><strong>Date</strong></td>
+    <td bgcolor="#FFFFCC"><strong>Nom et lieu de l'&eacute;preuve </strong></td>
+    <td bgcolor="#FFFFCC"><strong>Infos</strong></td>
+  </tr>
+  <tr>
+    <td>Sa-25</td>
+    <td>Epreuve sur piste &agrave; Hy&egrave;res (Toutes) </td>
+    <td><a class="cube" href="#piste1"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Di-26</td>
+    <td>Gentlemen des Fleurs &agrave; Hy&egrave;res (Toutes) </td>
+    <td><a class="cube" href="#gentlemen-des-fleurs"><center>&gt;&gt;</center></a></td>
+  </tr>
+</table>
+</h6>
+
+				</center>
+                
+    			</li>
+				</ul>
+				<ul class="rounded">
+			
+    			<li class="light">
+				<center>
+				<h1>F&eacute;vrier</h1>
+				<h6><table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFCC"><strong>Date</strong></td>
+    <td bgcolor="#FFFFCC"><strong>Nom et lieu de l'&eacute;preuve </strong></td>
+    <td bgcolor="#FFFFCC"><strong>Infos</strong></td>
+  </tr>
+  <tr>
+    <td>Di-09</td>
+    <td>GP de la chambre des M&eacute;tiers du Var (PC) </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Di-09</td>
+    <td>64<sup>e</sup> Gentlemen de Cannes (Toutes) </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Di-16</td>
+    <td>GP Jacques Dalmasso (1/2/3 + Junior + PCO) </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Di-16</td>
+    <td>Monte Carlo Alassio (1/2/3) </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Ma-18</td>
+    <td>Boucles du Haut Var (1/2) </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Me-19</td>
+    <td>Boucles du Haut Var (1/2) </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Je-20</td>
+    <td>Boucles du Haut Var (1/2) </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Sa-22</td>
+    <td>Epreuve sur piste &agrave; Hy&egrave;res (Toutes) </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>22 au 23 </td>
+    <td>46<sup>e</sup> Tour Cycliste International du Haut Var Matin </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+</table>
+</h6>
+
+				</center>
+                
+    			</li>
+      </ul>				<ul class="rounded">
+			
+    			<li class="light">
+				<center>
+				<h1>Mars</h1>
+				<h6><table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFCC"><strong>Date</strong></td>
+    <td bgcolor="#FFFFCC"><strong>Nom et lieu de l'&eacute;preuve </strong></td>
+    <td bgcolor="#FFFFCC"><strong>Infos</strong></td>
+  </tr>
+  <tr>
+    <td>Sa-01</td>
+    <td>GP de Seillans - Challenge 1 (1/2/3 + Junior) </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Sa-01</td>
+    <td>GP de Fayence - Challenge 2 (1/2/3 + Junior) </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Di-02</td>
+    <td>20<sup>e</sup> Ronde de Montauroux (1/2/3 + Junior) </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Ma-04</td>
+    <td>Epreuve sur piste &agrave; Hy&egrave;res (Toutes) </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Sa-08</td>
+    <td>Souvenir Louis Nucera (1/2/3 + Junior + PCO) </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Di-16</td>
+    <td>GP de Grimaud (PC) </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Di-16</td>
+    <td>GP de la Ville d'Antibes (1/2/3 + Junior+ PCO) </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Sa-22</td>
+    <td>Epreuve sur piste &agrave; Hy&egrave;res (Toutes)</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Di-30</td>
+    <td>Crit&eacute;rium Cycliste de Monaco (Minime + F&eacute;minine) </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Di-30</td>
+    <td>Crit&eacute;rium Cycliste de Monaco (Cadet + F&eacute;minine) </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Di-30</td>
+    <td>Crit&eacute;rium Cycliste de Monaco (1/2/3 + Junior) </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Di-30</td>
+    <td>Crit&eacute;rium Cycliste de Monaco (PC) </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>?</td>
+    <td>1<sup>&egrave;re</sup> &eacute;preuve Inter r&eacute;gion cadet (Cadet) </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+</table>
+</h6>
+
+				</center>
+                
+    			</li>
+      </ul>
+	  				<ul class="rounded">
+			
+    			<li class="light">
+				<center>
+				<h1>Avril</h1>
+				<h6><table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFCC"><strong>Date</strong></td>
+    <td bgcolor="#FFFFCC"><strong>Nom et lieu de l'&eacute;preuve </strong></td>
+    <td bgcolor="#FFFFCC"><strong>Infos</strong></td>
+  </tr>
+  <tr>
+    <td>Sa-05</td>
+    <td>Mont&eacute;e du Faron (1/2/3) </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Sa-05</td>
+    <td>Mont&eacute;e du Faron (PC) </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Sa-05</td>
+    <td>Tour Cycliste PACA Junior - Toulon le Faron (Junior) </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Di-06</td>
+    <td>Tour Cycliste PACA Junior - Andon (Junior) </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Di-06</td>
+    <td>Grand Fondo Monte Carlo (Cyclosportive) </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Di-13</td>
+    <td>La Charly Berard (Cyclosportive) </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Di-13</td>
+    <td>Tour du Centre Var (1/2/3 + Junior + PCO) </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Di-13</td>
+    <td>Tour du Centre Var (Minime + F&eacute;minine) </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Di-13</td>
+    <td>Tour du Centre Var (Cadet + F&eacute;minine) </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Sa-19</td>
+    <td>Epreuve sur piste &agrave; Hy&egrave;res (Toutes) </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Sa-19 et Di-20 </td>
+    <td>1<sup>&egrave;re</sup> &eacute;preuve Challenge National Juniors </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Lu-21</td>
+    <td>GP de Jeunes &agrave; Draguignan (Minime + F&eacute;minine)</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Lu-21</td>
+    <td>GP de Jeunes &agrave; Draguignan (Cadet + F&eacute;minine) </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Ma-29</td>
+    <td>Epreuve sur piste &agrave; Hy&egrave;res (Toutes)</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Di-27</td>
+    <td>GP de N&eacute;oules (PC) </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+</table>
+</h6>
+
+				</center>
+                
+    			</li>
+      </ul>
+	  				<ul class="rounded">
+			
+    			<li class="light">
+				<center>
+				<h1>Mai</h1>
+				<h6><table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFCC"><strong>Date</strong></td>
+    <td bgcolor="#FFFFCC"><strong>Nom et lieu de l'&eacute;preuve </strong></td>
+    <td bgcolor="#FFFFCC"><strong>Infos</strong></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+</table></h6>
+
+				</center>
+                
+    			</li>
+      </ul>
+	  				<ul class="rounded">
+			
+    			<li class="light">
+				<center>
+				<h1>Juin</h1>
+				<h6><table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFCC"><strong>Date</strong></td>
+    <td bgcolor="#FFFFCC"><strong>Nom et lieu de l'&eacute;preuve </strong></td>
+    <td bgcolor="#FFFFCC"><strong>Infos</strong></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+</table></h6>
+
+				</center>
+                
+    			</li>
+      </ul>
+	  				<ul class="rounded">
+			
+    			<li class="light">
+				<center>
+				<h1>Juillet</h1>
+				<h6><table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFCC"><strong>Date</strong></td>
+    <td bgcolor="#FFFFCC"><strong>Nom et lieu de l'&eacute;preuve </strong></td>
+    <td bgcolor="#FFFFCC"><strong>Infos</strong></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+</table></h6>
+
+				</center>
+                
+    			</li>
+      </ul>
+	  				<ul class="rounded">
+			
+    			<li class="light">
+				<center>
+				<h1>Ao&ucirc;t</h1>
+				<h6><table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFCC"><strong>Date</strong></td>
+    <td bgcolor="#FFFFCC"><strong>Nom et lieu de l'&eacute;preuve </strong></td>
+    <td bgcolor="#FFFFCC"><strong>Infos</strong></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+</table></h6>
+
+				</center>
+                
+    			</li>
+      </ul>
+	  				<ul class="rounded">
+			
+    			<li class="light">
+				<center>
+				<h1>Septembre</h1>
+				<h6><table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFCC"><strong>Date</strong></td>
+    <td bgcolor="#FFFFCC"><strong>Nom et lieu de l'&eacute;preuve </strong></td>
+    <td bgcolor="#FFFFCC"><strong>Infos</strong></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+</table></h6>
+
+				</center>
+                
+    			</li>
+      </ul>
+	  				<ul class="rounded">
+			
+    			<li class="light">
+				<center>
+				<h1>Octobre</h1>
+				<h6><table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFCC"><strong>Date</strong></td>
+    <td bgcolor="#FFFFCC"><strong>Nom et lieu de l'&eacute;preuve </strong></td>
+    <td bgcolor="#FFFFCC"><strong>Infos</strong></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+</table></h6>
+
+				</center>
+                
+    			</li>
+      </ul>
+    </div>
+	
+	<div id="fsgt-route">
+    <div class="toolbar">
+                <h1>FSGT Route</h1>
+                <a href="#" class="back">Retour</a>
+            </div>
+
+				<ul class="rounded">
+			
+    			<li class="light">
+				<center>
+				<h1>Mars</h1>
+				<h6><table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFCC"><strong>Date</strong></td>
+    <td bgcolor="#FFFFCC"><strong>Nom et lieu de l'&eacute;preuve </strong></td>
+    <td bgcolor="#FFFFCC"><strong>Infos</strong></td>
+  </tr>
+  <tr>
+    <td>Di-02</td>
+    <td>Crit&eacute;rium Saint Jean Cap Ferrat</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Di-09</td>
+    <td>Grand Prix du Cannet-Rocheville</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Di-16</td>
+    <td>Grand Prix des Mimosas (course en ligne + clm) </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Di-23</td>
+    <td>Troph&eacute;e des Collines (clm par &eacute;quipes)</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Di-30</td>
+    <td>Menton - Col de la Madone (Course de c&ocirc;te)</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+</table>
+</h6>
+
+				</center>
+                
+    			</li>
+      </ul>
+	  				<ul class="rounded">
+			
+    			<li class="light">
+				<center>
+				<h1>Avril</h1>
+				<h6><table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFCC"><strong>Date</strong></td>
+    <td bgcolor="#FFFFCC"><strong>Nom et lieu de l'&eacute;preuve </strong></td>
+    <td bgcolor="#FFFFCC"><strong>Infos</strong></td>
+  </tr>
+  <tr>
+    <td>Sa-05</td>
+    <td>GP du Cap d'Antibes (avec animation &eacute;cole de v&eacute;lo)</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Sa-12</td>
+    <td>CLM d'Aspremont</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Di-13</td>
+    <td>La Charly B&eacute;rard (cyclosportive)</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Lu-21</td>
+    <td>Ronde de Plascassier (avec animation &eacute;cole de v&eacute;lo)</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Di-27</td>
+    <td>Grand Prix des Transports Gerbino (CLM sur piste par &eacute;quipe de 4)</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+</table>
+</h6>
+
+				</center>
+                
+    			</li>
+      </ul>
+	  				<ul class="rounded">
+			
+    			<li class="light">
+				<center>
+				<h1>Mai</h1>
+				<h6><table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFCC"><strong>Date</strong></td>
+    <td bgcolor="#FFFFCC"><strong>Nom et lieu de l'&eacute;preuve </strong></td>
+    <td bgcolor="#FFFFCC"><strong>Infos</strong></td>
+  </tr>
+  <tr>
+    <td>Di-04</td>
+    <td>Grand Prix des Martyrs</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Je-15</td>
+    <td>Troph&eacute;e de la Siagne (Etape 1 : Epreuve aux points sur piste)</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Je-22</td>
+    <td>Troph&eacute;e de la Siagne (Etape 2 : Epreuve aux points sur piste)</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Di-25</td>
+    <td>3H de Grasse - Souvenir Julien Constantin</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Je-29</td>
+    <td>Nice-Saorge</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+</table>
+</h6>
+
+				</center>
+                
+    			</li>
+      </ul>
+	  				<ul class="rounded">
+			
+    			<li class="light">
+				<center>
+				<h1>Juin</h1>
+				<h6><table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFCC"><strong>Date</strong></td>
+    <td bgcolor="#FFFFCC"><strong>Nom et lieu de l'&eacute;preuve </strong></td>
+    <td bgcolor="#FFFFCC"><strong>Infos</strong></td>
+  </tr>
+  <tr>
+    <td>Di-01</td>
+    <td>Souvenir Morra</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Sa-07</td>
+    <td>Cimes du Mercantour</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Di-08</td>
+    <td>Championnat Interr&eacute;gional &agrave; Andon</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Di-15</td>
+    <td>Grand Prix Valbonne</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Ve-20</td>
+    <td>Nocturne des Briconautes</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Sa-28</td>
+    <td>Grand Prix du M.I.N</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+</table>
+</h6>
+
+				</center>
+                
+    			</li>
+      </ul>
+	  				<ul class="rounded">
+			
+    			<li class="light">
+				<center>
+				<h1>Juillet</h1>
+				<h6><table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFCC"><strong>Date</strong></td>
+    <td bgcolor="#FFFFCC"><strong>Nom et lieu de l'&eacute;preuve </strong></td>
+    <td bgcolor="#FFFFCC"><strong>Infos</strong></td>
+  </tr>
+  <tr>
+    <td>Sa-05 et Di-06 </td>
+    <td>Championnat National FSGT &agrave; Andon</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Je-10</td>
+    <td>Piste 1 </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Di-13</td>
+    <td>Criterium Allianz Riviera</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Je-17</td>
+    <td>Piste 2 </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Je-24</td>
+    <td>Piste 3 </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Je-31</td>
+    <td>Piste 4 </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  
+</table>
+</h6>
+
+				</center>
+                
+    			</li>
+      </ul>
+	  				<ul class="rounded">
+			
+    			<li class="light">
+				<center>
+				<h1>Ao&ucirc;t</h1>
+				<h6><table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFCC"><strong>Date</strong></td>
+    <td bgcolor="#FFFFCC"><strong>Nom et lieu de l'&eacute;preuve </strong></td>
+    <td bgcolor="#FFFFCC"><strong>Infos</strong></td>
+  </tr>
+  <tr>
+    <td>Ve-15</td>
+    <td>Troph&eacute;e des Grimpeurs</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Sa-23</td>
+    <td>Grand Prix des Verriers</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Di-31</td>
+    <td>Grand Prix des Communes de l'Esteron</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+</table>
+</h6>
+
+				</center>
+                
+    			</li>
+      </ul>
+	  				<ul class="rounded">
+			
+    			<li class="light">
+				<center>
+				<h1>Septembre</h1>
+				<h6><table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFCC"><strong>Date</strong></td>
+    <td bgcolor="#FFFFCC"><strong>Nom et lieu de l'&eacute;preuve </strong></td>
+    <td bgcolor="#FFFFCC"><strong>Infos</strong></td>
+  </tr>
+  <tr>
+    <td>Sa-06</td>
+    <td>Saint Laurent - Auron</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Di-21</td>
+    <td>Grand Prix de Castagniers</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Di-28</td>
+    <td>Troph&eacute;e des Champions</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+</table>
+</h6>
+
+				</center>
+                
+    			</li>
+      </ul>
+    </div>
+	
+	
+	<div id="ufolep-route">
+    <div class="toolbar">
+                <h1>UFOLEP Route</h1>
+                <a href="#" class="back">Retour</a>
+            </div>
+            <ul class="rounded">
+    			<li class="light">
+				<center>
+				<h1>Janvier</h1>
+				<h6><table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFCC"><strong>Date</strong></td>
+    <td bgcolor="#FFFFCC"><strong>Nom et lieu de l'&eacute;preuve </strong></td>
+    <td bgcolor="#FFFFCC"><strong>Infos</strong></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td> </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+</table>
+</h6>
+
+				</center>
+                
+    			</li>
+				</ul>
+				<ul class="rounded">
+			
+    			<li class="light">
+				<center>
+				<h1>F&eacute;vrier</h1>
+				<h6><table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFCC"><strong>Date</strong></td>
+    <td bgcolor="#FFFFCC"><strong>Nom et lieu de l'&eacute;preuve </strong></td>
+    <td bgcolor="#FFFFCC"><strong>Infos</strong></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+</table></h6>
+
+				</center>
+                
+    			</li>
+      </ul>				<ul class="rounded">
+			
+    			<li class="light">
+				<center>
+				<h1>Mars</h1>
+				<h6><table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFCC"><strong>Date</strong></td>
+    <td bgcolor="#FFFFCC"><strong>Nom et lieu de l'&eacute;preuve </strong></td>
+    <td bgcolor="#FFFFCC"><strong>Infos</strong></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+</table></h6>
+
+				</center>
+                
+    			</li>
+      </ul>
+	  				<ul class="rounded">
+			
+    			<li class="light">
+				<center>
+				<h1>Avril</h1>
+				<h6><table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFCC"><strong>Date</strong></td>
+    <td bgcolor="#FFFFCC"><strong>Nom et lieu de l'&eacute;preuve </strong></td>
+    <td bgcolor="#FFFFCC"><strong>Infos</strong></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+</table></h6>
+
+				</center>
+                
+    			</li>
+      </ul>
+	  				<ul class="rounded">
+			
+    			<li class="light">
+				<center>
+				<h1>Mai</h1>
+				<h6><table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFCC"><strong>Date</strong></td>
+    <td bgcolor="#FFFFCC"><strong>Nom et lieu de l'&eacute;preuve </strong></td>
+    <td bgcolor="#FFFFCC"><strong>Infos</strong></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+</table></h6>
+
+				</center>
+                
+    			</li>
+      </ul>
+	  				<ul class="rounded">
+			
+    			<li class="light">
+				<center>
+				<h1>Juin</h1>
+				<h6><table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFCC"><strong>Date</strong></td>
+    <td bgcolor="#FFFFCC"><strong>Nom et lieu de l'&eacute;preuve </strong></td>
+    <td bgcolor="#FFFFCC"><strong>Infos</strong></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+</table></h6>
+
+				</center>
+                
+    			</li>
+      </ul>
+	  				<ul class="rounded">
+			
+    			<li class="light">
+				<center>
+				<h1>Juillet</h1>
+				<h6><table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFCC"><strong>Date</strong></td>
+    <td bgcolor="#FFFFCC"><strong>Nom et lieu de l'&eacute;preuve </strong></td>
+    <td bgcolor="#FFFFCC"><strong>Infos</strong></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+</table></h6>
+
+				</center>
+                
+    			</li>
+      </ul>
+	  				<ul class="rounded">
+			
+    			<li class="light">
+				<center>
+				<h1>Ao&ucirc;t</h1>
+				<h6><table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFCC"><strong>Date</strong></td>
+    <td bgcolor="#FFFFCC"><strong>Nom et lieu de l'&eacute;preuve </strong></td>
+    <td bgcolor="#FFFFCC"><strong>Infos</strong></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+</table></h6>
+
+				</center>
+                
+    			</li>
+      </ul>
+	  				<ul class="rounded">
+			
+    			<li class="light">
+				<center>
+				<h1>Septembre</h1>
+				<h6><table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFCC"><strong>Date</strong></td>
+    <td bgcolor="#FFFFCC"><strong>Nom et lieu de l'&eacute;preuve </strong></td>
+    <td bgcolor="#FFFFCC"><strong>Infos</strong></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+</table></h6>
+
+				</center>
+                
+    			</li>
+      </ul>
+	  				<ul class="rounded">
+			
+    			<li class="light">
+				<center>
+				<h1>Octobre</h1>
+				<h6><table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFCC"><strong>Date</strong></td>
+    <td bgcolor="#FFFFCC"><strong>Nom et lieu de l'&eacute;preuve </strong></td>
+    <td bgcolor="#FFFFCC"><strong>Infos</strong></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+</table></h6>
+
+				</center>
+                
+    			</li>
+      </ul>
+    </div>
+
+<div id="clubs">
+    <div class="toolbar">
+                <h1>Les clubs</h1>
+                <a href="#" class="back">Retour</a>
+            </div>
+				
+	  				<ul class="rounded">
+			
+    			<li class="light">
+				<center>
+				<h1>Alpes Maritimes</h1>
+				<h6><table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFCC"><strong>Nom du club </strong></td>
+    <td bgcolor="#FFFFCC"><strong>F&eacute;d&eacute;rations</strong></td>
+    <td bgcolor="#FFFFCC"><strong>Infos</strong></td>
+  </tr>
+  <tr>
+    <td>AC Valbonne</td>
+    <td>FSGT</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>AS Var Mer</td>
+    <td>FSGT</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Cavigal Nice Sports </td>
+    <td>FSGT</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Cyclo Club de Vence </td>
+    <td>FSGT</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>ES Cannes </td>
+    <td>FFC / FSGT</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Nice Cyclisme FSGT </td>
+    <td>FSGT</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Magnan Bornala Cyclisme </td>
+    <td>FSGT</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Mimosa Sprint Mandelieu </td>
+    <td>FFC / FSGT </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Olympique Cyclo Club Antibes</td>
+    <td>FFC / FSGT</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Sprinter Club de Nice </td>
+    <td>FFC / FSGT</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Stade Laurentin </td>
+    <td>FSGT</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Team Spoc Nice </td>
+    <td>FSGT</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Trinit&eacute; Sport Cyclisme </td>
+    <td>FSGT</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>UC Grasse</td>
+    <td>FSGT</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>Union Cycliste de Monaco </td>
+    <td>FFC / FSGT </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>US P&eacute;gomas </td>
+    <td>FSGT</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>V&eacute;lo Club de Menton </td>
+    <td>FSGT</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>V&eacute;lo Club Rochevillois </td>
+    <td>FFC / FSGT </td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>V&eacute;lo Sport Biotois</td>
+    <td>FSGT</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  
+  
+</table>
+				</h6>
+
+				</center>
+                
+    			</li>
+      </ul>
+	  
+	  				<ul class="rounded">
+			
+    			<li class="light">
+				<center>
+				<h1>Var</h1>
+				<h6><table width="100%" border="1">
+  <tr>
+    <td bgcolor="#FFFFCC"><strong>Nom du club </strong></td>
+    <td bgcolor="#FFFFCC"><strong>F&eacute;d&eacute;rations</strong></td>
+    <td bgcolor="#FFFFCC"><strong>Infos</strong></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>V&eacute;lo Club Pug&eacute;tois </td>
+    <td>FSGT</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="cube" href="#??"><center>&gt;&gt;</center></a></td>
+  </tr>
+  
+  
+</table>
+				</h6>
+
+				</center>
+                
+    			</li>
+      </ul>
+
+    </div>
+
+	  			<div id="magasins">
+    <div class="toolbar">
+                <h1>Les magasins partenaires</h1>
+                <a href="#" class="back">Retour</a>
+            </div>
+				<ul class="rounded">
+			
+    			<li class="light">
+				<center>
+				<h1>Bouticycle Cycles P. Beraud Fr&eacute;jus</h1>
+				<h6>
+				Rond point de la Gendarmerie<br>83600 Fr&eacute;jus<br><br>
+				<u>T&eacute;l :</u> <a href="tel:+33494512020" rel="external"/>04 94 51 20 20</a>
+				<br>
+				<u>Marques :</u> Bergamond, Cannondale, GT, Look, Moustache, Time<br><br>
+				<u>Horaires d'ouverture :</u><br>Du lundi au samedi : 9h-12h et 14h-19h
+				</h6>
+				</center>
+    			</li>
+      </ul>
+				
+				<ul class="rounded">
+			
+    			<li class="light">
+				<center>
+				<h1>Culture V&eacute;lo Fr&eacute;jus </h1>
+				<h6>
+				ZI l'Intendance - Quartier la Palud<br>83600 Fr&eacute;jus<br><br>
+				<u>T&eacute;l :</u> <a href="tel:+33494537402" rel="external"/>04 94 53 74 02</a>
+				<u>Email :</u> <a href="mailto:83frejus@culturevelo.com" rel="external">83frejus@culturevelo.com</a>
+				<br>
+				<u>Marques :</u> Lapierre, Matra, Scott, Trek<br><br>
+				<u>Horaires d'ouverture :</u><br> Lundi : 14h-19h<br>Du mardi au samedi : 9h-12h et 14h-19h
+				</h6>
+				</center>
+    			</li>
+      </ul>
+
+    </div>
+    
+</body>
+</html>
