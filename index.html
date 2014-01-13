@@ -8,6 +8,7 @@
 <script src="jqtouch/jqtouch.min.js" type="text/javascript" charset="utf-8"></script>
 <link href="jqtouch/jqtouch.min.css" rel="stylesheet" type="text/css">
 <link href="themes/apple/theme.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="javascripts/sidr/stylesheets/jquery.sidr.dark.css">
 <!-- iOS 3+: dimensions 320x460 -->
 <link rel="apple-touch-startup-image" href="Default.png">
 <script type="text/javascript" charset="utf-8">
@@ -63,6 +64,32 @@ pubDate + '<br/>' + desc + '</li>');
 </head>
 
 <body>
+
+ <!-- Your stuff -->
+ 
+<!-- Include jQuery -->
+<script src="javascripts/jquery.js"></script>
+<!-- Include the Sidr JS -->
+<script src="javascripts/sidr/jquery.sidr.min.js"></script>
+
+<a id="simple-menu" href="#sidr">Toggle menu</a>
+ 
+<div id="sidr">
+<!-- Your content -->
+<ul>
+<li><a href="#">List 1</a></li>
+<li class="active"><a href="#">List 2</a></li>
+<li><a href="#">List 3</a></li>
+</ul>
+</div>
+ 
+<script>
+$(document).ready(function() {
+$('#simple-menu').sidr();
+});
+</script>
+
+
 	<div id="home" class="current">
         <img src="images/logo-ekoi.png" alt="Cycliste azur&eacute;en" width="220" height="74" class="center"><br>
         <ul class="rounded">
@@ -78,7 +105,7 @@ pubDate + '<br/>' + desc + '</li>');
                 <p>&copy; Copyright 2008-2014 - EKOI - Tous droits r&eacute;serv&eacute;s</p>
         </div>
     </div>
-	
+
 	
 <div id="contact">
     <div class="toolbar">
